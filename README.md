@@ -50,7 +50,7 @@ cd <repository-folder>
 2. Install dependencies:
 pip install opencv-python mediapipe numpy pandas scikit-learn matplotlib tensorflow seaborn joblib
 
-🏃‍♂️ Running the Project
+##🏃‍♂️ Running the Project
 
 1. Feature Extraction & Dataset Preparation
 
@@ -78,8 +78,24 @@ Detects hand gestures in real-time.
 Displays the predicted gesture on the screen.
 Press q to quit.
 
-📊 Model Evaluation
+##📊 Model Evaluation
 
 Confusion matrices for both Random Forest and KNN are generated using Seaborn heatmaps.
 
 Accuracy and classification reports are displayed in the console.
+
+##👩‍💻 Team / Author
+
+Mariam Aly – mariam.aly.2024@aiu.edu.eg
+Catherine Gaballah – catherine.gaballah.2024@aiu.edu.eg
+Menna Allah Osama Khalil – mennatallah.khalil.2024@aiu.edu.eg
+
+This project was developed as part of Computer Science & AI coursework at Alamein International University.
+
+##🚀 Future Improvements
+
+Add more gestures and dynamic gesture recognition (motion-based)
+Integrate with a GUI using Streamlit for easy testing
+Deploy as a web or mobile application
+Implement deep learning models (CNNs) for higher accuracy
+Allow saving recognized gestures to a text file for communication purposes
