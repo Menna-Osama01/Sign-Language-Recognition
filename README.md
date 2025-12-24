@@ -44,6 +44,8 @@ The system works in three stages:
 1. Clone the repository:
 
 ```bash
+git clone <repository-url>
+cd <repository-folder>
 
 2. Install dependencies:
 pip install opencv-python mediapipe numpy pandas scikit-learn matplotlib tensorflow seaborn joblib
