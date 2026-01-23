@@ -1,101 +1,113 @@
-# 🤟 Sign Language Recognition with Mediapipe & Machine Learning
+# Sign Language Recognition
 
-[![Python](https://img.shields.io/badge/python-3.11-blue.svg?style=flat-square)](https://www.python.org/)  
-[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](LICENSE)  
-
-This project is a **real-time hand gesture recognition system** using **Mediapipe**, **OpenCV**, and **machine learning**. It allows recognizing static sign language gestures via webcam and provides a pipeline to train, evaluate, and save models using **Random Forest** and **K-Nearest Neighbors (KNN)** classifiers.
+This project recognizes hand signs from images and live video using **MediaPipe** and machine learning. It supports both **offline image feature extraction** and **real-time hand sign prediction** using a webcam.
 
 ---
 
-## 📝 Project Overview
+## 🖥 Project Structure
 
-The system works in three stages:
+Sign-Language-Recognition/
+│
+├── notebooks/
+│ └── sign_language_system.ipynb # Main refactored notebook
+├── models/
+│ ├── sign_rf_model.pkl # Trained RandomForest model
+│ ├── sign_knn_model.pkl # Trained KNN model
+│ └── label_encoder.pkl # Label encoder for target labels
+├── features.csv # Extracted hand features
+├── README.md # This file
+└── requirements.txt # Required Python packages
 
-1. **Feature Extraction**  
-   - Uses Mediapipe Hands to detect 21 hand landmarks per frame.  
-   - Normalizes the landmarks to a consistent scale and orientation.
-
-2. **Model Training**  
-   - Extracted features are saved into a CSV dataset.  
-   - Train classifiers (**Random Forest**, **KNN**) to predict the gesture class.  
-   - Save trained models and label encoder for real-time inference.
-
-3. **Real-Time Prediction**  
-   - Capture webcam feed and detect hand landmarks in real-time.  
-   - Predict gestures using the trained model.  
-   - Smooth predictions using a rolling window to reduce noise.  
-   - Display the predicted gesture on the video frame.
 
 ---
 
-## 💻 Features
+## 📘 About the Notebook
 
-- Real-time hand gesture recognition from webcam
-- Supports training new datasets of hand gestures
-- Normalization of landmarks for rotation and scale invariance
-- Multiple classifiers: Random Forest & KNN
-- Rolling window prediction to stabilize outputs
-- Confusion matrix visualization for model evaluation
+The notebook `sign_language_system.ipynb` is organized into **four stages**:
+
+1. **Feature Extraction**
+   - Uses MediaPipe to detect hand landmarks from images
+   - Normalizes and flattens landmarks into feature vectors
+   - Saves features to `features.csv`
+
+2. **Model Training**
+   - Loads extracted features
+   - Trains **RandomForest** and **KNN** classifiers
+   - Saves trained models and label encoder
+
+3. **Evaluation**
+   - Computes accuracy and classification reports
+   - Plots confusion matrices for both classifiers
+
+4. **Real-Time Prediction**
+   - Uses webcam to detect hand signs live
+   - Uses a **sliding window** to stabilize predictions
+   - Shows predicted sign on the screen
 
 ---
 
-## 🔧 Installation
+## 🛠 Requirements
 
-1. Clone the repository:
+Install all required packages using:
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+pip install -r requirements.txt
 
-2. Install dependencies:
-pip install opencv-python mediapipe numpy pandas scikit-learn matplotlib tensorflow seaborn joblib
+Key packages:
 
-🏃‍♂️ Running the Project
+mediapipe
 
-1. Feature Extraction & Dataset Preparation
+opencv-python
 
-# Run the dataset feature extraction script
-python feature_extraction.py
-This will generate a CSV file (features.csv) containing normalized landmarks and labels.
-git clone <repository-url>
-cd <repository-folder>
+numpy
 
-2. Train Models
+pandas
 
-python train_models.py
+scikit-learn
 
-Trains Random Forest and KNN classifiers.
-Saves models as sign_rf_model.pkl and sign_knn_model.pkl.
-Saves the label encoder as label_encoder.pkl.
-Prints accuracy, classification report, and confusion matrix.
+joblib
 
-3. Real-Time Gesture Recognition
+matplotlib
 
-python realtime_prediction.py
+seaborn
 
-Opens a webcam window.
-Detects hand gestures in real-time.
-Displays the predicted gesture on the screen.
-Press q to quit.
+---
+🚀 How to Run
 
-📊 Model Evaluation
+Feature Extraction and Model Training
 
-Confusion matrices for both Random Forest and KNN are generated using Seaborn heatmaps.
+Open sign_language_system.ipynb
 
-Accuracy and classification reports are displayed in the console.
+Run cells in order to extract features, train models, and evaluate them
 
-👩‍💻 Team / Author
+Real-Time Prediction
 
-Mariam Aly – mariam.aly.2024@aiu.edu.eg
-Catherine Gaballah – catherine.gaballah.2024@aiu.edu.eg
-Menna Allah Osama Khalil – mennatallah.khalil.2024@aiu.edu.eg
+Run the final cell for live webcam sign recognition
 
-This project was developed as part of Computer Science & AI coursework at Alamein International University.
+Press q to quit the webcam window
+---
+📈 Results
 
-🚀 Future Improvements
+RandomForest Accuracy: ~[0.97]
 
-Add more gestures and dynamic gesture recognition (motion-based)
-Integrate with a GUI using Streamlit for easy testing
-Deploy as a web or mobile application
-Implement deep learning models (CNNs) for higher accuracy
-Allow saving recognized gestures to a text file for communication purposes
+KNN Accuracy: ~[0.94]
+
+Confusion matrices are plotted inside the notebook for analysis.
+---
+💡 Notes
+
+Make sure your dataset folder path is correct in the notebook
+
+For real-time prediction, only one hand is supported at a time
+
+Prediction uses a deque window to stabilize results
+---
+📚 References
+https://developers.google.com/mediapipe/solutions/vision/hand_landmarker
+https://scikit-learn.org/stable/
+---
+🎯 Contact
+Menna Allah Osama
+Email:mennatallah.khalil.2024@aiu.edu.eg
+GitHub:MennaOsama01
+LinkedIn:linkedin.com/in/menna-osama-a01943344
